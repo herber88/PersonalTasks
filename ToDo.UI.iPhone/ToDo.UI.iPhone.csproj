@@ -125,4 +125,10 @@
     <Folder Include="Authentication\" />
     <Folder Include="Authentication\ViewControllers\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToDo.Core.iOS\ToDo.Core.iOS.csproj">
+      <Project>{DBD538F8-B61C-4314-99D5-8D30C105607C}</Project>
+      <Name>ToDo.Core.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

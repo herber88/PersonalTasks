@@ -94,14 +94,11 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Studyless\Libs\Json50r8\Bin\Portable40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp.MonoTouch">
       <HintPath>..\..\..\Downloads\restsharp-104.1.0\lib\ios\RestSharp.MonoTouch.dll</HintPath>
     </Reference>
     <Reference Include="SQLite">
-      <HintPath>..\..\Studyless\Libs\Sqlite.net\ios\SQLite.dll</HintPath>
+      <HintPath>..\..\..\Downloads\sqlite-net-1.0.1\lib\ios\SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -34,12 +34,17 @@ namespace ToDo.Core.iOS
 			return TodoItems;
 		}
 
-		public override Task<bool> Add (TodoItem entity)
+		public override Task<bool> Add (params TodoItem[] entity)
 		{
 			throw new NotImplementedException ();
 		}
 
-		internal TodoItemRepository ()
+		public override Task<bool> Remove (params TodoItem[] entity)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public TodoItemRepository ()
 		{
 
 		}

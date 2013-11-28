@@ -46,6 +46,7 @@
     <Folder Include="..\ToDo.Core.Android\Data\Entity\" />
     <Folder Include="..\ToDo.Core.Android\Data\Repository\" />
     <Folder Include="..\ToDo.Core.Android\Data\Factory\" />
+    <Folder Include="..\ToDo.Core.Android\Data\Authentication\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,5 +57,6 @@
     <Compile Include="..\ToDo.Core.Android\Data\Repository\TodoListRepository.cs" />
     <Compile Include="..\ToDo.Core.Android\Data\Repository\IRestBackedRepository.cs" />
     <Compile Include="..\ToDo.Core.Android\Data\Factory\TrelloRepositoryFactory.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Authentication\IAuthenticatorFactory.cs" />
   </ItemGroup>
 </Project>

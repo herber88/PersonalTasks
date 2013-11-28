@@ -13,7 +13,8 @@ namespace ToDo.Core.iOS
 		}
 
 		public abstract Task<IEnumerable<t>> GetAllForCurrentUser();
-		public abstract Task<bool> Add(t entity);
+		public abstract Task<bool> Add(params t[] entity);
+		public abstract Task<bool> Remove(params t[] entity);
 		public abstract Task<bool> Sync ();
 	}
 }

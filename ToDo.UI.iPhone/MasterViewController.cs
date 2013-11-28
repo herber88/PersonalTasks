@@ -3,6 +3,10 @@ using System.Drawing;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using ToDo.Core.iOS;
+using System.Linq;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace ToDo.UI.iPhone
 {
@@ -13,7 +17,6 @@ namespace ToDo.UI.iPhone
 		public MasterViewController () : base ("MasterViewController", null)
 		{
 			Title = NSBundle.MainBundle.LocalizedString ("Master", "Master");
-
 			// Custom initialization
 		}
 
@@ -24,7 +27,9 @@ namespace ToDo.UI.iPhone
 
 		void AddNewItem (object sender, EventArgs args)
 		{
-			dataSource.Objects.Insert (0, DateTime.Now);
+			dataSource.Items.Insert (0, new TodoItem{
+				Title = "New item"
+			});
 
 			using (var indexPath = NSIndexPath.FromRowSection (0, 0))
 				TableView.InsertRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
@@ -42,28 +47,61 @@ namespace ToDo.UI.iPhone
 		{
 			base.ViewDidLoad ();
 
+			var authenticatorFactory = new TrelloAuthenticatiorFactory ((vc) => 
+				InvokeOnMainThread (() =>
+					this.PresentViewController(vc, true, null)
+				));
+
 			// Perform any additional setup after loading the view, typically from a nib.
 			NavigationItem.LeftBarButtonItem = EditButtonItem;
 
 			var addButton = new UIBarButtonItem (UIBarButtonSystemItem.Add, AddNewItem);
 			NavigationItem.RightBarButtonItem = addButton;
 
-			TableView.Source = dataSource = new DataSource (this);
+			TableView.Source = dataSource = new DataSource (this, authenticatorFactory);
 		}
 
 		class DataSource : UITableViewSource
 		{
 			static readonly NSString CellIdentifier = new NSString ("Cell");
-			readonly List<object> objects = new List<object> ();
 			readonly MasterViewController controller;
+			TrelloRepositoryFactory repoFactory;
 
-			public DataSource (MasterViewController controller)
+			public ObservableCollection<TodoItem> Items {get;set;}
+
+			public DataSource (MasterViewController controller, IAuthenticatorFactory authenticatorFactory)
 			{
 				this.controller = controller;
+				Items = new ObservableCollection<TodoItem>();
+				Initialize(authenticatorFactory);
 			}
 
-			public IList<object> Objects {
-				get { return objects; }
+			public async void Initialize(IAuthenticatorFactory authenticatorFactory){
+				var authenticator = await authenticatorFactory.GetAuthenticatior();
+				repoFactory = new TrelloRepositoryFactory (authenticator);
+				LoadData ();
+			}
+
+			public async void LoadData(){
+				var repo = repoFactory.GetInstance<TodoItemRepository> ();
+				var tasks = await repo.GetAllForCurrentUser();
+				Items = new ObservableCollection<TodoItem> (tasks);
+				Items.CollectionChanged += async (object sender, NotifyCollectionChangedEventArgs e) => {
+					var oldArray = new TodoItem[e.OldItems.Count];
+					e.OldItems.CopyTo(oldArray, 0);
+					await repoFactory.GetInstance<TodoItemRepository>().Remove(oldArray);
+
+					var newArray = new TodoItem[e.NewItems.Count];
+					e.NewItems.CopyTo(newArray, 0);
+					await repoFactory.GetInstance<TodoItemRepository>().Add(newArray);
+				};
+				InvokeOnMainThread (() => {
+					controller.TableView.ReloadData();
+				});
+			}
+
+			public IEnumerable<TodoItem> Objects {
+				get { return Items; }
 			}
 			// Customize the number of sections in the table view.
 			public override int NumberOfSections (UITableView tableView)
@@ -73,7 +111,7 @@ namespace ToDo.UI.iPhone
 
 			public override int RowsInSection (UITableView tableview, int section)
 			{
-				return objects.Count;
+				return Items.Count;
 			}
 			// Customize the appearance of table view cells.
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -84,7 +122,9 @@ namespace ToDo.UI.iPhone
 					cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 				}
 
-				cell.TextLabel.Text = objects [indexPath.Row].ToString ();
+				var item = Items [indexPath.Row] as TodoItem;
+
+				cell.TextLabel.Text = item.Title;
 
 				return cell;
 			}
@@ -99,7 +139,7 @@ namespace ToDo.UI.iPhone
 			{
 				if (editingStyle == UITableViewCellEditingStyle.Delete) {
 					// Delete the row from the data source.
-					objects.RemoveAt (indexPath.Row);
+					Items.RemoveAt (indexPath.Row);
 					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 				} else if (editingStyle == UITableViewCellEditingStyle.Insert) {
 					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -124,7 +164,7 @@ namespace ToDo.UI.iPhone
 				if (controller.DetailViewController == null)
 					controller.DetailViewController = new DetailViewController ();
 
-				controller.DetailViewController.SetDetailItem (objects [indexPath.Row]);
+				controller.DetailViewController.SetDetailItem (Items [indexPath.Row]);
 
 				// Pass the selected object to the new view controller.
 				controller.NavigationController.PushViewController (controller.DetailViewController, true);

@@ -44,7 +44,8 @@ namespace ToDo
 			NavigationItem.RightBarButtonItem = addButton;
 
 			TableView.Source = dataSource = new DataSource ((authenticationViewController) => {
-				this.PresentViewController (authenticationViewController, true, null);
+				InvokeOnMainThread (() =>
+					this.PresentViewController (authenticationViewController, true, null));
 			}, 
 				() => {
 					InvokeOnMainThread (() => TableView.ReloadData ());

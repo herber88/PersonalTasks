@@ -3,10 +3,11 @@ using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using RestSharp;
 using MonoTouch.UIKit;
+using ToDo.Core.iOS;
 
 namespace ToDo.UI.iPhone
 {
-	public class TrelloAuthenticatiorFactory
+	public class TrelloAuthenticatiorFactory : IAuthenticatorFactory
 	{
 		public const string AppKey = "7e2934188f1515e28053c375751c0076";
 
@@ -39,6 +40,7 @@ namespace ToDo.UI.iPhone
 		public Task<IAuthenticator> GetAuthenticatior(){
 			if (!string.IsNullOrEmpty (AuthenticationToken)){
 				var task = new Task<IAuthenticator>(() => Authenticator);
+				task.Start ();
 				return task;
 			}
 			else {
