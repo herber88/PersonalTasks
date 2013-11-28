@@ -43,9 +43,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="RestSharp.MonoDroid">
+      <HintPath>..\Libs\RestSharp\android\Homebuilt 4.0.3\RestSharp.MonoDroid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Data\Authentication\IAuthenticatorFactory.cs" />
+    <Compile Include="Data\Entity\TodoItem.cs" />
+    <Compile Include="Data\Entity\TodoList.cs" />
+    <Compile Include="Data\Factory\TrelloRepositoryFactory.cs" />
+    <Compile Include="Data\Repository\AbstractRepository.cs" />
+    <Compile Include="Data\Repository\IRestBackedRepository.cs" />
+    <Compile Include="Data\Repository\TodoItemRepository.cs" />
+    <Compile Include="Data\Repository\TodoListRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -54,4 +65,7 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
 </Project>
