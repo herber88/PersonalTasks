@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ToDo/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ToDo/MasterViewController.designer.cs">
     <Files>
-      <File FileName="ToDo/AppDelegate.cs" Line="12" Column="3" />
+      <File FileName="ToDo/AppDelegate.cs" Line="29" Column="32" />
+      <File FileName="ToDo/MasterViewController.cs" Line="133" Column="1" />
+      <File FileName="ToDo/Data/API/TrelloApi.cs" Line="88" Column="31" />
+      <File FileName="ToDo/DetailViewController.cs" Line="11" Column="21" />
+      <File FileName="ToDo/MasterViewController.designer.cs" Line="6" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
