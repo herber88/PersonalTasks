@@ -1,26 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ToDo/Data/Repository/TrelloCardRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ToDo/AppDelegate.cs">
     <Files>
-      <File FileName="ToDo/AppDelegate.cs" Line="1" Column="1" />
-      <File FileName="ToDo/DetailViewController.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Authentication/AuthenticationViewController.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Main.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Info.plist" />
-      <File FileName="ToDo/Entitlements.plist" />
-      <File FileName="ToDo/Data/DTO/TrelloBoard.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/API/BaseApi.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/DTO/TrelloList.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/DTO/TrelloCard.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Authentication/TrelloAuthenticationViewController.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Constants.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/Repository/TrelloBoardRepository.cs" Line="1" Column="1" />
-      <File FileName="ToDo/MasterViewController.cs" Line="86" Column="29" />
-      <File FileName="ToDo/Data/Repository/TrelloCardRepository.cs" Line="74" Column="39" />
-      <File FileName="ToDo/Data/Repository/TrelloListRepository.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/Models/Todo.cs" Line="1" Column="1" />
-      <File FileName="ToDo/Data/API/TrelloApi.cs" Line="14" Column="25" />
-      <File FileName="ToDo/Authentication/BaseAuthenticationViewController.cs" Line="1" Column="1" />
+      <File FileName="ToDo/AppDelegate.cs" Line="12" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

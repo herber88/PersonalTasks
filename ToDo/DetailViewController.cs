@@ -29,7 +29,8 @@ namespace ToDo
 			// Update the user interface for the detail item
 			if (IsViewLoaded && detailItem != null) {
 				detailDescriptionLabel.Text = detailItem.ListId;
-				this.NavigationItem.Title = detailItem.Name;
+				if(detailItem.Name != null)
+					this.NavigationItem.Title = detailItem.Name;
 			}
 		}
 
