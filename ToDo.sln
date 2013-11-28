@@ -83,6 +83,6 @@ Global
 		{DBD538F8-B61C-4314-99D5-8D30C105607C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ToDo\ToDo.csproj
+		StartupItem = ToDo.Core.iOS\ToDo.Core.iOS.csproj
 	EndGlobalSection
 EndGlobal

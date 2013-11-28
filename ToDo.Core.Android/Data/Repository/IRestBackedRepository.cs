@@ -3,7 +3,7 @@ using RestSharp;
 
 namespace ToDo.Core.iOS
 {
-	public interface IRepository
+	public interface IRestBackedRepository
 	{
 		IRestClient Api { get;set;}
 	}

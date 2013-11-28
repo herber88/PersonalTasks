@@ -90,6 +90,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="RestSharp.MonoTouch">
+      <HintPath>..\Libs\RestSharp\ios\RestSharp.MonoTouch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -109,10 +112,17 @@
     <Compile Include="DetailViewController.designer.cs">
       <DependentUpon>DetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Authentication\ViewControllers\BaseAuthenticationViewController.cs" />
+    <Compile Include="Authentication\ViewControllers\TrelloAuthenticationViewController.cs" />
+    <Compile Include="Authentication\ViewControllers\TrelloAuthenticatiorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MasterViewController.xib" />
     <InterfaceDefinition Include="DetailViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+    <Folder Include="Authentication\ViewControllers\" />
+  </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
     <RootNamespace>ToDo.Core.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>ToDo.Core.iOS</AssemblyName>
+    <BaseDirectory>..\ToDo.Core.Android</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,9 +36,25 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="RestSharp.MonoTouch">
+      <HintPath>..\Libs\RestSharp\ios\RestSharp.MonoTouch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="..\ToDo.Core.Android\Data\" />
+    <Folder Include="..\ToDo.Core.Android\Data\Entity\" />
+    <Folder Include="..\ToDo.Core.Android\Data\Repository\" />
+    <Folder Include="..\ToDo.Core.Android\Data\Factory\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\ToDo.Core.Android\Data\Entity\TodoItem.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Entity\TodoList.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Repository\AbstractRepository.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Repository\TodoItemRepository.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Repository\TodoListRepository.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Repository\IRestBackedRepository.cs" />
+    <Compile Include="..\ToDo.Core.Android\Data\Factory\TrelloRepositoryFactory.cs" />
+  </ItemGroup>
 </Project>

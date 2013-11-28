@@ -1,12 +1,20 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using RestSharp;
 
 namespace ToDo.Core.iOS
 {
-	public class AbstractRepository
+	public abstract class AbstractRepository<t> : IRestBackedRepository
 	{
-		public AbstractRepository ()
+		public abstract IRestClient Api { get; set;}
+		public AbstractRepository()
 		{
 		}
+
+		public abstract Task<IEnumerable<t>> GetAllForCurrentUser();
+		public abstract Task<bool> Add(t entity);
+		public abstract Task<bool> Sync ();
 	}
 }
 

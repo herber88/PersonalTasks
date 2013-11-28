@@ -58,13 +58,6 @@ namespace ToDo
 			base.ViewDidLoad ();
 
 			webView = new UIWebView (new RectangleF(0, (_addCancelButton) ? navigationBarHeight : 0, View.Frame.Width, (_addCancelButton) ? View.Frame.Height - navigationBarHeight : View.Frame.Height));
-			/*webView.LoadFinished += (object sender, EventArgs e) => {
-				RequestFinished(webView.Request);
-			};
-			webView.LoadStarted += (object sender, EventArgs e) => {
-				RequestStarted(webView.Request);
-			};*/
-
 			webView.Delegate = new WebViewDelegate(RequestStarted, RequestFinished);
 
 			if (!_addCancelButton) {
